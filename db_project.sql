@@ -17,8 +17,6 @@ create table db_project.GROUP (
 	headmen_id 	varchar(255)
 );
 
-alter table db_project.group add constraint PK_Group primary key (group_id);
-
 create table db_project.STUDENT (
 	student_id 		 varchar(255),
 	valid_from_dt	 date default now()::date,
