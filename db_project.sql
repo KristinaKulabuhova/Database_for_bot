@@ -53,74 +53,6 @@ create table db_project.LESSON (
 	class_end_tm	time not null
 );
 
---DEPARTMENT_X_TECHER
-insert into db_project.DEPARTMENT_X_TECHER
-values (7, 1);
-insert into db_project.DEPARTMENT_X_TECHER
-values (13, 2);
-insert into db_project.DEPARTMENT_X_TECHER
-values (13, 3);
-insert into db_project.DEPARTMENT_X_TECHER
-values (13, 4);
-insert into db_project.DEPARTMENT_X_TECHER
-values (7, 5);
-insert into db_project.DEPARTMENT_X_TECHER
-values (7, 12);
-insert into db_project.DEPARTMENT_X_TECHER
-values (7, 7);
-insert into db_project.DEPARTMENT_X_TECHER
-values (17, 8);
-insert into db_project.DEPARTMENT_X_TECHER
-values (17, 9);
-insert into db_project.DEPARTMENT_X_TECHER
-values (17, 10);
-insert into db_project.DEPARTMENT_X_TECHER
-values (17, 11);
-
-select * from db_project.DEPARTMENT_X_TECHER
-
---LESSON
-insert into db_project.LESSON
-values (default, 1, 2, 1, 'Практика по С++', 'Вторник', '9:00:00', '12:10:00');
-insert into db_project.LESSON
-values (default, 2, 1, 1, 'Гармонический анализ', 'Вторник', '12:20:00', '13:45:00');
-insert into db_project.LESSON
-values (default, 17, NULL, 1, 'Иностранный язык', 'Вторник', '13:55:00', '15:20:00');
-insert into db_project.LESSON
-values (default, NULL, NULL, 1, 'Физкультура', 'Вторник', '17:05:00', '18:30:00');
-insert into db_project.LESSON
-values (default, 3, 5, 1, 'Дифференциальные уравнения', 'Среда', '9:00:00', '10:25:00');
-insert into db_project.LESSON
-values (default, NULL, NULL, 1, 'Физкультура', 'Среда', '10:45:00', '12:10:00');
-insert into db_project.LESSON
-values (default, 4, 3, 1, 'ТиПМС', 'Среда', '12:20:00', '13:45:00');
-insert into db_project.LESSON
-values (default, 5, 4, 1, 'Базы данных', 'Среда', '17:05:00', '18:30:00');
-insert into db_project.LESSON
-values (default, 18, 7, 1, 'Гармонический анализ', 'Четверг', '9:00:00', '10:25:00');
-insert into db_project.LESSON
-values (default, 19, 8, 1, 'Дискретный структуры', 'Четверг', '13:55:00', '15:20:00');
-insert into db_project.LESSON
-values (default, 1, 2, 1, 'Практика по С++', 'Пятница', '9:00:00', '12:10:00');
-insert into db_project.LESSON
-values (default, 6, 9, 1, 'Теория вероятностей', 'Пятница', '12:20:00', '13:45:00');
-insert into db_project.LESSON
-values (default, 17, NULL, 1, 'Иностранный язык', 'Пятница', '13:55:00', '15:20:00');
-insert into db_project.LESSON
-values (default, 7, 8, 1, 'Дискретные структуры', 'Пятница', '17:05:00', '18:30:00');
-insert into db_project.LESSON
-values (default, NULL, 12, 1, 'Дифференциальные уравнения', 'Суббота', '9:00:00', '10:25:00');
-insert into db_project.LESSON
-values (default, NULL, 10, 1, 'Теория вероятностей', 'Суббота', '10:45:00', '12:10:00');
-insert into db_project.LESSON
-values (default, NULL, 3, 1, 'ТиПМС', 'Суббота', '12:20:00', '13:45:00');
-insert into db_project.LESSON
-values (default, NULL, 4, 1, 'Базы данных', 'Суббота', '13:55:00', '15:20:00');
-insert into db_project.LESSON
-values (default, NULL, 11, 1, 'Введение в анализ данных', 'Суббота', '16:30:00', '17:55:00');
-
-select * from db_project.LESSON;
-
 --TEACHER
 insert into db_project.TEACHER
 values (default, 'Орёл Ольга Евгеньевна');
@@ -128,8 +60,6 @@ insert into db_project.TEACHER
 values (default, 'Дединский Илья Рудольфович');
 insert into db_project.TEACHER
 values (default, 'Липовский Роман Германович');
-insert into db_project.TEACHER
-values (default, 'Меркурьева Надежда Андреевна');
 insert into db_project.TEACHER
 values (default, 'Лизунов Антон Юрьевич');
 insert into db_project.TEACHER
@@ -182,6 +112,8 @@ insert into db_project.DEPARTMENT
 values (default, 'Кафедра компьютерной лингвистики');
 insert into db_project.DEPARTMENT
 values (default, 'Кафедра банковских информационных технологий');
+insert into db_project.department 
+values (default, 'Кафедра алгоритмов и технологий программировани');
 
 select * from db_project.DEPARTMENT;
 
@@ -274,5 +206,155 @@ insert into db_project.STUDENT
 values ('282586014', default, 1, 'Русин Александр', false, '1/12/2024');
 insert into db_project.STUDENT
 values ('153378901', default, 1, 'Кулабухова Кристина', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('172883203', default, 3, 'Дробченко Екатерина', true, '1/12/2024');
+insert into db_project.STUDENT
+values ('239201206', default, 3, 'Саранчин Андрей', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('201562785', default, 3, 'Дёмина Елизавета', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('122314452', default, 3, 'Бартенев Павел', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('208049032', default, 3, 'Воробьёв Михаил', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('63677634', default, 3, 'Чуркин Алексей', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('118762545', default, 3, 'Мусихин Марк', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('223295015', default, 3, 'Кязимов Кирилл', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('242082791', default, 3, 'Вдовин Максим', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('241026057', default, 3, 'Новиков Сергей', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('8538316', default, 3, 'Ванурин Сергей', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('156955827', default, 3, 'Баринов Денис', false, '1/12/2024');
+insert into db_project.STUDENT
+values ('135883655', default, 3, 'Коновалова Марина', false, '1/12/2024');
 
 select * from db_project.student;
+
+--DEPARTMENT_X_TECHER
+insert into db_project.DEPARTMENT_X_TECHER
+values (1, 1);
+insert into db_project.DEPARTMENT_X_TECHER
+values (17, 2);
+insert into db_project.DEPARTMENT_X_TECHER
+values (17, 3);
+insert into db_project.DEPARTMENT_X_TECHER
+values (1, 4);
+insert into db_project.DEPARTMENT_X_TECHER
+values (17, 5);
+insert into db_project.DEPARTMENT_X_TECHER
+values (1, 6);
+insert into db_project.DEPARTMENT_X_TECHER
+values (11, 7);
+insert into db_project.DEPARTMENT_X_TECHER
+values (11, 8);
+insert into db_project.DEPARTMENT_X_TECHER
+values (11, 9);
+insert into db_project.DEPARTMENT_X_TECHER
+values (11, 10);
+insert into db_project.DEPARTMENT_X_TECHER
+values (1, 11);
+
+select * from db_project.DEPARTMENT_X_TECHER
+
+--LESSON
+insert into db_project.LESSON
+values (default, 17, 2, 1, 'Практика по С++', 'Вторник', '9:00:00', '12:10:00');
+insert into db_project.LESSON
+values (default, 1, 1, 1, 'Гармонический анализ', 'Вторник', '12:20:00', '13:45:00');
+insert into db_project.LESSON
+values (default, 3, NULL, 1, 'Иностранный язык', 'Вторник', '13:55:00', '15:20:00');
+insert into db_project.LESSON
+values (default, 6, NULL, 1, 'Физкультура', 'Вторник', '17:05:00', '18:30:00');
+insert into db_project.LESSON
+values (default, 1, 4, 1, 'Дифференциальные уравнения', 'Среда', '9:00:00', '10:25:00');
+insert into db_project.LESSON
+values (default, 6, NULL, 1, 'Физкультура', 'Среда', '10:45:00', '12:10:00');
+insert into db_project.LESSON
+values (default, 17, 3, 1, 'ТиПМС', 'Среда', '12:20:00', '13:45:00');
+insert into db_project.LESSON
+values (default, 17, 5, 1, 'Базы данных', 'Среда', '17:05:00', '18:30:00');
+insert into db_project.LESSON
+values (default, 1, 6, 1, 'Лекция. Гармонический анализ', 'Четверг', '9:00:00', '10:25:00');
+insert into db_project.LESSON
+values (default, 11, 7, 1, 'Лекция. Дискретный структуры', 'Четверг', '13:55:00', '15:20:00');
+insert into db_project.LESSON
+values (default, 17, 2, 1, 'Практика по С++', 'Пятница', '9:00:00', '12:10:00');
+insert into db_project.LESSON
+values (default, 11, 8, 1, 'Теория вероятностей', 'Пятница', '12:20:00', '13:45:00');
+insert into db_project.LESSON
+values (default, 3, NULL, 1, 'Иностранный язык', 'Пятница', '13:55:00', '15:20:00');
+insert into db_project.LESSON
+values (default, 11, 7, 1, 'Дискретные структуры', 'Пятница', '17:05:00', '18:30:00');
+insert into db_project.LESSON
+values (default, 1, 11, 1, 'Лекция. Дифференциальные уравнения', 'Суббота', '9:00:00', '10:25:00');
+insert into db_project.LESSON
+values (default, 11, 9, 1, 'Лекция. Теория вероятностей', 'Суббота', '10:45:00', '12:10:00');
+insert into db_project.LESSON
+values (default, 17, 3, 1, 'Лекция. ТиПМС', 'Суббота', '12:20:00', '13:45:00');
+insert into db_project.LESSON
+values (default, 17, 5, 1, 'Лекция. Базы данных', 'Суббота', '13:55:00', '15:20:00');
+insert into db_project.LESSON
+values (default, 11, 10, 1, 'Лекция. Введение в анализ данных', 'Суббота', '16:30:00', '17:55:00');
+
+select * from db_project.LESSON;
+
+--
+INSERT INTO db_project.STUDENT
+VALUES ('173627205', default, 2, 'Неледова Елизавета', FALSE, '1/12/2024');
+
+INSERT INTO db_project.STUDENT
+VALUES ('433525900', default, 1, 'Павлюченков Дмитрий', FALSE, '1/12/2024'); 
+
+INSERT INTO db_project.STUDENT
+VALUES ('224049573', default, 2, 'Возняк Юлия', FALSE, '1/12/2024'); 
+
+INSERT INTO db_project.STUDENT
+VALUES ('253288930', default, 2, 'Иван Бердашкевич', FALSE, '1/12/2024'); 
+
+select * from db_project.student;
+
+UPDATE db_project.student
+SET headmen_flg = true, group_id = 2
+WHERE student_id like '433525900';
+
+DELETE FROM db_project.student 
+WHERE student_id = '253288930' AND group_id = 2;
+
+UPDATE db_project.student
+SET student_nm = 'Вознюк Юлия'
+WHERE student_id = '224049573';
+
+select * from db_project.student;
+
+--выводит студентов в алфавитном порядке по группам
+select ROW_NUMBER() OVER(PARTITION BY group_nm ORDER BY student_nm), student_nm, group_nm
+from db_project.student s full join db_project.group g on g.group_id = s.group_id;
+
+--выводит количество пар по дням неделям для 932 группы
+select distinct count(lesson_id) over (partition by weekday_nm) count_of_lessons, weekday_nm
+from db_project.lesson l full join db_project.classroom c on l.classroom_id = c.classroom_id
+where group_id = 1
+group by weekday_nm, lesson_id;
+
+--выводит количество пар от каждой кафедры в расписании группы 932
+select count(lesson_id), department_nm
+from db_project.department d inner join db_project.department_x_techer dxt on d.department_id = dxt.department_id 
+inner join db_project.lesson l on l.teacher_id = dxt.teacher_id 
+group by department_nm
+having count(lesson_id) > 2;
+
+--выводит для каждой пары ее предыдущую и следующую
+select lesson_id, lesson_nm, weekday_nm, 
+lag(lesson_id , 1, 0) over(order by weekday_nm, class_start_tm) as previos_lesson, 
+lead(lesson_id, 1, 0) over(order by weekday_nm, class_start_tm) as next_lesson
+from db_project.lesson l;
+
+--выводит всю ифнормацию о парах для 932 группы на субботу
+select weekday_nm, lesson_nm, class_start_tm, class_end_tm, classroom_nm, building_nm, teacher_nm
+from db_project.lesson l full join db_project.classroom c on c.classroom_id = l.classroom_id full join db_project.teacher t on t.teacher_id = l.teacher_id
+where weekday_nm = 'Суббота';
