@@ -358,3 +358,66 @@ from db_project.lesson l;
 select weekday_nm, lesson_nm, class_start_tm, class_end_tm, classroom_nm, building_nm, teacher_nm
 from db_project.lesson l full join db_project.classroom c on c.classroom_id = l.classroom_id full join db_project.teacher t on t.teacher_id = l.teacher_id
 where weekday_nm = 'Суббота';
+
+
+
+
+--8 ЧЕКПОИНТ
+--для анонимных опросов о качестве обучения в конце семетра
+create view ex_anonymized_studs as
+select student_id, left(student_nm, 0) || 'XXXX' || right(student_nm, 0) as student, group_nm
+from db_project.student s inner join db_project.group g on g.group_id = s.group_id;
+
+select * from ex_anonymized_studs;
+
+
+-- Пусть бот будет уметь рассылать расписание экзаменов. На очной сессии студент заранее не знает принимающего, поэтому сокрытие ФИО
+create view anonymized_teachers as
+select t.teacher_id, left(teacher_nm, 0) || 'XXXX' || right(teacher_nm, 0) as teacher, lesson_nm
+from db_project.teacher t inner join db_project.lesson l on l.teacher_id = t.teacher_id;
+
+select * from anonymized_teachers;
+
+
+-- выводит предыдущую и следующую пару для группы 932
+create view prev_and_next_lessons as 
+select lesson_id, lesson_nm, weekday_nm, 
+lag(lesson_id , 1, 0) over(order by weekday_nm, class_start_tm) as previos_lesson, 
+lead(lesson_id, 1, 0) over(order by weekday_nm, class_start_tm) as next_lesson
+from db_project.lesson l
+where group_id = 1;
+
+select * from prev_and_next_lessons;
+
+
+-- выводит  расписание для группы 932
+create view table_for_932 as
+select lesson_nm, weekday_nm, class_start_tm, class_end_tm, teacher_nm, classroom_nm, building_nm, department_nm
+from db_project.lesson l full join db_project.teacher t on l.teacher_id = t.teacher_id 
+inner join db_project.classroom c on l.classroom_id = c.classroom_id 
+full join db_project.department_x_techer dxt on t.teacher_id = dxt.teacher_id 
+join db_project.department d on dxt.department_id = d.department_id
+group by weekday_nm, class_start_tm, class_end_tm, teacher_nm, classroom_nm, building_nm, department_nm, lesson_nm
+order by weekday_nm;
+
+select * from table_for_932;
+
+
+-- выводит группу 932
+create view group_932 as
+select ROW_NUMBER() OVER(PARTITION BY group_nm ORDER BY student_nm), student_nm, group_nm
+from db_project.student s full join db_project.group g on g.group_id = s.group_id
+where g.group_id = 1
+order by student_nm;
+
+select * from group_932;
+
+
+--выводит все лекции для группы 932
+create view lectures_932 as
+select lesson_nm, teacher_nm
+from db_project.lesson l inner join db_project.teacher t on l.teacher_id = t.teacher_id 
+where lesson_nm like 'Лекция.%'
+order by lesson_nm;
+
+select * from lectures_932;
