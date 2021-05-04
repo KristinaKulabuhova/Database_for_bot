@@ -421,3 +421,50 @@ where lesson_nm like 'Лекция.%'
 order by lesson_nm;
 
 select * from lectures_932;
+
+
+--  ПРОЦЕДУРЫ
+
+--drop procedure time_student(varchar); 
+
+-- 1. Расчет нагрузки в часах  для студента.
+create or replace function time_student(id varchar) returns integer as $$
+	select count(lesson_id) from db_project.student s inner join db_project.group g on s.group_id = g.group_id inner join db_project.lesson l on g.group_id = l.group_id 
+	where s.student_id = id;
+$$ language sql;
+	
+select time_student('153378901'); -- должно вывести 19
+
+-- 2. Ближающая пара для конкретного студента по текущему времени.
+create or replace function near_lesson(id varchar, now_time time, weekday varchar) returns varchar as $$
+	select first_value(suit.lesson_nm) over(order by suit.class_start_tm) as next_lesson
+	from 
+	(select l.lesson_nm, l.class_start_tm from db_project.lesson l full join db_project.group g on l.group_id = g.group_id full join db_project.student s on s.group_id = g.group_id 
+	where weekday_nm = $3 and student_id = $1 and  class_start_tm >= $2) as suit
+$$ language sql;
+
+select near_lesson('153378901', '17:00:00', 'Среда'); -- должно вывести базу данных
+
+
+-- ТРИГГЕРЫ
+
+ -- 1. Обновление старосты
+create trigger change_headman
+before insert or update of haedman_id on db_project.group for each row 
+begin 
+	update db_project.student set headmen_flg = false
+	where student_id = old.student_id;
+	update db_project.student set headmen_flg = true
+	where student_id = new.student_id;
+end;
+
+-- 2. Обработка версионности при изменениях данных у студента
+create trigger change_student
+before insert or update on db_project.student for each row 
+begin 
+	if (TG_OP = 'UPDATE') then
+		valid_to_date = now()::date;
+	elsif (TG_OP = 'INSERT') then
+		valid_from_date = now()::date;		
+end;
+
