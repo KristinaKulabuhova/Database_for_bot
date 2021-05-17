@@ -448,15 +448,22 @@ select near_lesson('153378901', '17:00:00', 'Среда'); -- должно вы�
 
 -- ТРИГГЕРЫ
 
- -- 1. Обновление старосты
-create trigger change_headman
-before insert or update of haedman_id on db_project.group for each row 
-begin 
+create or replace function db_project.headmen() returns trigger as 
+$$
+begin
 	update db_project.student set headmen_flg = false
-	where student_id = old.student_id;
+	where student_id = old.headmen_id;
 	update db_project.student set headmen_flg = true
-	where student_id = new.student_id;
+	where student_id = new.headmen_id;
+	return new;
 end;
+$$ language plpgsql;
+	
+
+-- 1. Обновление старосты
+create trigger change_headman
+after insert or update of headmen_id on db_project.group for each row 
+execute procedure db_project.headmen();
 
 -- 2. Обработка версионности при изменениях данных у студента
 create trigger change_student
@@ -467,4 +474,3 @@ begin
 	elsif (TG_OP = 'INSERT') then
 		valid_from_date = now()::date;		
 end;
-
